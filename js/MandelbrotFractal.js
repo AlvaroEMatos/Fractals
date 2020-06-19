@@ -1,39 +1,30 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-
-const limits = {
-    xMax: 2,
-    xMin: -2,
-    yMax: 2,
-    yMin: -2
-};
-const pixelMatrix = new Array()//not implemented !!
-const delta = 1 / ((canvas.width / 2) / limits.xMax);
-const n = 100;
+const width = 2000;
+const height = 2000;
+const maxIteracion = 1000
 
 plot();
 
-function plot() {//does not work !!
-    ctx.translate(canvas.width / 2, canvas.height / 2);
-
+function plot() {
     ctx.fillStyle = "white";
 
-    for (let a = limits.xMin; a <= limits.xMax; a += delta) {
-        for (let b = limits.yMin; b <= limits.yMax; b += delta) {
-            //*/
-            let x = a;
-            let y = b;
-            for (let i = 0; i < n; i++) {
-                x = Math.pow(x, 2) - Math.pow(y, 2) + a;
-                y = 2 * x * y + b;
+    for (let i = 0; i < width; i++) {
+        for (let j = 0; j < height; j++) {
+            let c_re = (i - width / 2) * 4 / width;
+            let c_im = (j - height / 2) * 4 / height;
+            let x = 0;
+            let y = 0;
+
+            for(let iteracion = 0; iteracion < maxIteracion; iteracion++) {
+                let temp = (x * x) - (y * y) + c_re;
+                y = 2 * x * y + c_im;
+                x = temp;
             }
 
-            if (Math.abs(x) < 2 && Math.abs(y) < 2) {
-                ctx.fillRect(a / delta, b / delta, 1, 1);
+            if((x * x) + (y * y) <= 4) {
+                ctx.fillRect(i, j, 1, 1);
             }
-            //*/
         }
     }
-
-    ctx.translate(-canvas.width / 2, -canvas.height / 2);
 }
