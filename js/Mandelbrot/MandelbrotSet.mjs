@@ -14,7 +14,86 @@ var maxInteraction;
 var limits;
 var palette;
 var colorMap;
-var configs;
+var configs = {
+    "defaultLimits" : {
+        "xMax" : 0.8,
+        "xMin" : -2.2,
+        "yMax" : 1.2,
+        "yMin" : -1.2
+    },
+
+    "rgb" : {
+        "colors" : [
+            [255, 0, 0],
+            [0, 255, 0],
+            [0, 0, 255],
+            [255, 0, 0]
+        ],
+
+        "stopValues": [
+            0,
+            33,
+            66,
+            100
+        ]
+    },
+
+    "grayScale" : {
+        "colors" : [
+            [0,0,0],
+            [255,255,255],
+            [0,0,0]
+        ],
+
+        "stopValues": [
+            0,
+            50,
+            100
+        ]
+    },
+
+    "fire" : {
+        "colors" : [
+            [0, 0, 0],
+            [255, 0, 0],
+            [255, 255, 0],
+            [255, 255, 255],
+            [255, 255, 0],
+            [255, 0, 0],
+            [0, 0, 0]
+        ],
+
+        "stopValues": [
+            0,
+            20,
+            40,
+            50,
+            60,
+            80,
+            100
+        ]
+    },
+
+    "earthAndSky" : {
+        "colors" : [
+            [255, 255, 255],
+            [255, 204, 0],
+            [135, 30, 19],
+            [0, 0, 153],
+            [0, 102, 255],
+            [255, 255, 255]
+        ],
+
+        "stopValues": [
+            0,
+            15,
+            30,
+            70,
+            85,
+            100
+        ]
+    }
+};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////#region web implementation
 
@@ -42,6 +121,7 @@ start();
 
 
 function start() {
+    /*
     var xmlHttp;
 
     if (window.XMLHttpRequest) {
@@ -55,6 +135,13 @@ function start() {
 
             configs = JSON.parse(xmlHttp.responseText);
 
+
+        }
+    };
+
+    xmlHttp.open('GET', window.origin + '/js/Mandelbrot/configs.txt', true);
+    xmlHttp.send();
+    */
             limits = new Limits(configs);
             palette = new Palette(configs);
 
@@ -97,11 +184,6 @@ function start() {
                     y.value = limits.yMin + ((limits.yMax - limits.yMin) / height) * ( height - (event.pageY - $(this).offset().top));
                 });
             });
-        }
-    };
-
-    xmlHttp.open('GET', window.origin + '/js/Mandelbrot/configs.txt', true);
-    xmlHttp.send();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////#endregion 
