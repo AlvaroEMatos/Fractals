@@ -134,14 +134,8 @@ function start() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
 
             configs = JSON.parse(xmlHttp.responseText);
-
-
-        }
-    };
-
-    xmlHttp.open('GET', window.origin + '/js/Mandelbrot/configs.txt', true);
-    xmlHttp.send();
     */
+    
             limits = new Limits(configs);
             palette = new Palette(configs);
 
@@ -184,6 +178,14 @@ function start() {
                     y.value = limits.yMin + ((limits.yMax - limits.yMin) / height) * ( height - (event.pageY - $(this).offset().top));
                 });
             });
+    
+    /*
+        }
+    };
+
+    xmlHttp.open('GET', window.origin + '/js/Mandelbrot/configs.txt', true);
+    xmlHttp.send();
+    */
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////#endregion 
