@@ -1,5 +1,6 @@
 export class Palette {
-    constructor() {
+    constructor(configs) {
+        this.configs = configs;
         this.colors = new Array();
         this.stopValues = new Array();
     }
@@ -23,6 +24,15 @@ export class Palette {
     
         this.stopValues.push(stopValue);
         this.colors.push(color);   
+    }
+
+    setNewPalette(paletteName) {
+        this.colors = new Array();
+        this.stopValues = new Array();
+        
+        for (let i = 0; i < this.configs[paletteName].colors.length; i++) {
+           this.addColor(this.configs[paletteName].colors[i], this.configs[paletteName].stopValues[i]);
+        }
     }   
 
     getColorMap(length, offSet) {//(length: number from 1 to maxInteration, offSet: number % from 0 to 100) return ["rgb(r,g,b)", ...]

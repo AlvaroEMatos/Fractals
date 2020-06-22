@@ -4,10 +4,77 @@
         <meta charset="utf-8">
         <title>Fractals!!!</title>
         <link rel="stylesheet" href="../css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
-        <canvas id="canvas"></canvas>
-        <canvas id="canvaspalette" width="800" height="20">
-        <script type="module" src="../js/MandelbrotFractal.mjs"></script>
+
+        <div class="container" id="controlsContainer">
+            <table>
+                <tr>
+                    <td>
+                        <br>
+                        <form id="parameters" onsubmit="return false">
+                            <label for="maxInteraction">Max iteraction:</label><br>
+
+                            <input id="maxInteraction" type="number" value="1000" min="0" step="1"><br>
+                            <br>
+                        </form>
+                        <tr>
+                    </td>
+                </tr>
+                    <td>
+                        <form id="position" onsubmit="return false">
+                            <br>
+                            <label>Position:</label><br>
+                            <label for="x">x:</label><input id="x" type="number" value="-0.7" step="0.1"><br>
+                            <label for="y">y:</label><input id="y" type="number" value="0" step="0.1"><br>
+                            <br>
+                            <label for="zoom">Zoom:</label><br>
+                            <input id="zoom", type="number", min="1" value="1"><br>
+                            <br>
+                        </form>  
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form id="palette" onsubmit="return false">
+                            <br>
+                            <label for="paletteList">Palette list: </label><br>
+                            <select id="paletteList">
+                                <option value="grayScale">Gray scale</option>
+                                <option value="rgb">RGB</option>
+                                <option value="fire">Fire</option>
+                                <option value="earthAndSky">Earth and Sky</option>
+                            </select>
+                            <br>
+                            <br>
+                            <label for="length">Length: </label><br>
+                            <input id="length" type="number" value="250" min="0" step="1"><br>
+
+                            <label for="offSet">Off set (%): </label><br>
+                            <input id="offSet" type="number" value="0" min="0" max="100"><br>
+                            <br>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br>
+                        <button id="resetBtn">Reset</button>
+                        <button id="ApllyPaletteBtn">Aplly Palette</button>
+                        <button id="plotBtn">Plot</button>
+                        <br>
+                        <br>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="container" id="canvasContainer">
+            <canvas id="canvas" width="800" height="600"></canvas>
+            <canvas id="canvaspalette" width="800" height="20">
+        </div>
+        
+        <script type="module" src="../js/Mandelbrot/MandelbrotSet.mjs"></script>
     </body>
 </html>
